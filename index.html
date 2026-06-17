@@ -9,28 +9,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;font-family:'Plus Jakarta Sans',sans-serif;transition:background-color 0.3s, color 0.3s}
 :root{--primary:#2563eb;--primary-dark:#1d4ed8;--secondary:#f59e0b;--success:#10b981;--danger:#ef4444;--warning:#fbbf24;--dark:#0f172a;--gray:#64748b;--light:#f8fafc;--white:#ffffff;--card-bg:#ffffff;--text-main:#0f172a;--border:#e2e8f0;--app-bg:#f1f5f9}
-
-/* Themes */
 body.dark-mode{--app-bg:#0f172a;--card-bg:#1e293b;--text-main:#f8fafc;--white:#1e293b;--dark:#f8fafc;--gray:#94a3b8;--border:#334155}
-body.matrix-mode{--app-bg:#000000;--card-bg:#0a0a0a;--text-main:#00ff00;--primary:#00ff00;--primary-dark:#00cc00;--secondary:#00ff00;--white:#0a0a0a;--dark:#00ff00;--gray:#008800;--border:#00ff00;--success:#00ff00;--danger:#ff0000;font-family:monospace !important}
-body.matrix-mode *{font-family:monospace !important;border-radius:0 !important;box-shadow:none !important}
-
 body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x:hidden}
-
 .splash{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-dark),var(--primary));display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10000;transition:opacity 0.5s ease;color:#fff}
 .splash.hidden{opacity:0;pointer-events:none}
 .logo-frame{width:120px;height:120px;border-radius:50%;border:4px solid var(--secondary);background:var(--white);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,0.3);color:var(--primary);font-size:2.5rem;font-weight:800}
 .logo-frame img{width:100%;height:100%;object-fit:cover}
-
 .login-screen{display:none;min-height:100vh;background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:20px;align-items:center;justify-content:center}
-.login-screen.active{display:flex}
-.login-card{background:var(--card-bg);border-radius:24px;padding:40px 25px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.2)}
-
+.login-screen.active{display:flex; flex-direction:column;}
+.login-card{background:var(--card-bg);border-radius:24px;padding:40px 25px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.2); display:none; animation: slideIn 0.4s ease;}
+.login-card.active{display:block;}
+.toggle-login{margin-top:20px; background:none; border:none; color:#fff; font-weight:700; text-decoration:underline; cursor:pointer; font-size:0.9rem;}
 .input-group{margin-bottom:18px;text-align:left}
 .input-group label{display:block;font-size:0.85rem;font-weight:700;color:var(--gray);margin-bottom:8px}
 .input-group input, .input-group select, .input-group textarea{width:100%;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-size:1rem;background:var(--app-bg);color:var(--text-main);outline:none}
 .input-group input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(37,99,235,0.15)}
-
 .btn{width:100%;padding:15px;border:none;border-radius:14px;font-size:1rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;color:#fff}
 .btn:active{transform:scale(0.97)}
 .btn-primary{background:var(--primary);box-shadow:0 4px 15px rgba(37,99,235,0.3)}
@@ -39,64 +32,50 @@ body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x
 .btn-warning{background:var(--warning)}
 .btn-secondary{background:var(--app-bg);color:var(--text-main);border:2px solid var(--border)}
 .btn-small{padding:8px 16px;font-size:0.85rem;width:auto;border-radius:10px}
-
 .app-container{display:none;padding-bottom:90px}
 .app-container.active{display:block}
+.student-portal-container{display:none; padding:20px; padding-bottom:40px;}
+.student-portal-container.active{display:block; animation: slideIn 0.4s ease;}
 .app-header{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;padding:25px 20px 40px;position:sticky;top:0;z-index:100;border-radius:0 0 30px 30px;box-shadow:0 10px 20px rgba(37,99,235,0.2)}
 .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}
 .header-brand{display:flex;align-items:center;gap:15px;cursor:pointer}
 .header-avatar{width:50px;height:50px;border-radius:50%;border:2px solid var(--secondary);background:var(--white);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:bold;overflow:hidden}
 .header-avatar img{width:100%;height:100%;object-fit:cover}
-
 .quick-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .stat-item{background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:16px;padding:15px 5px;text-align:center}
 .stat-item h3{font-size:1.4rem;font-weight:800;margin-bottom:2px}
 .stat-item p{font-size:0.65rem;text-transform:uppercase;font-weight:600;opacity:0.9}
-
 .tab-content{display:none;padding:20px;animation:slideIn 0.3s ease}
 .tab-content.active{display:block}
 @keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
 .card{background:var(--card-bg);border-radius:24px;padding:22px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,0.03);border:1px solid var(--border)}
 .card-title{font-size:1.15rem;font-weight:800;color:var(--text-main);margin-bottom:20px;display:flex;align-items:center;gap:10px}
-
 .quick-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
 .action-btn{background:var(--app-bg);border:2px solid var(--border);border-radius:18px;padding:20px 10px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;color:var(--text-main)}
 .action-btn .icon{font-size:2.2rem}
 .action-btn span{font-size:0.9rem;font-weight:700}
-
 .student-item{background:var(--card-bg);border-radius:20px;padding:18px;margin-bottom:15px;border-left:5px solid var(--primary);box-shadow:0 4px 15px rgba(0,0,0,0.02);border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
 .badge{padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:700;display:inline-block}
-.whatsapp-btn{background:#25D366;color:white;padding:8px 14px;border-radius:10px;text-decoration:none;font-size:0.85rem;font-weight:700;display:inline-flex;align-items:center;gap:6px;margin-top:10px}
 .id-btn{background:var(--primary);color:white;padding:8px 14px;border-radius:10px;font-size:0.85rem;font-weight:700;display:inline-flex;align-items:center;gap:6px;margin-top:10px;cursor:pointer;border:none}
-
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--card-bg);display:flex;justify-content:space-around;padding:15px 0 20px;box-shadow:0 -10px 30px rgba(0,0,0,0.05);z-index:1000;border-radius:30px 30px 0 0;border-top:1px solid var(--border)}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;color:var(--gray);font-size:0.75rem;font-weight:700;cursor:pointer}
 .nav-item .nav-icon{font-size:1.6rem}
 .nav-item.active{color:var(--primary)}
 .nav-item.active .nav-icon{transform:translateY(-5px)}
-
 .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);backdrop-filter:blur(5px);z-index:2000;align-items:flex-end}
 .modal-overlay.active{display:flex}
 .modal-sheet{background:var(--card-bg);border-radius:30px 30px 0 0;padding:30px 25px;width:100%;max-height:85vh;overflow-y:auto}
-
 .toast-container{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:4000;display:flex;flex-direction:column;gap:10px;width:90%;max-width:400px}
 .toast{background:var(--dark);color:white;padding:16px 24px;border-radius:16px;font-size:0.95rem;font-weight:600;box-shadow:0 10px 25px rgba(0,0,0,0.2);display:flex;align-items:center;gap:12px;animation:toastIn 0.3s ease}
 @keyframes toastIn{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
-
 .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
 .day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;font-size:1rem;font-weight:700;background:var(--app-bg)}
 .day-cell.present{background:var(--success);color:white}
 .day-cell.absent{background:var(--danger);color:white}
-
 .fab{position:fixed;bottom:105px;right:25px;width:65px;height:65px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;border:none;font-size:2.5rem;font-weight:300;box-shadow:0 10px 25px rgba(37,99,235,0.4);z-index:100;display:flex;align-items:center;justify-content:center}
-
-/* Secret Hacker Box */
-.secret-hacker-box{background:#000;border:2px solid #0f0;color:#0f0;padding:20px;border-radius:10px;font-family:monospace;margin-top:20px}
+.hacker-terminal{background:#000; color:#0f0; font-family:monospace; padding:20px; border-radius:10px; height:300px; overflow-y:auto; border:2px solid #0f0; margin-bottom:15px; font-size:0.85rem;}
 .secret-btn{background:transparent;border:1px solid #0f0;color:#0f0;padding:10px;width:100%;margin-bottom:10px;cursor:pointer;font-family:monospace;text-transform:uppercase;font-weight:bold;}
 .secret-btn:hover{background:#0f0;color:#000}
-
-/* Digital ID Card Styling */
 .digital-id-card{background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-radius:20px;padding:25px 20px;color:white;text-align:center;box-shadow:0 10px 30px rgba(37,99,235,0.4);position:relative;overflow:hidden;margin-bottom:20px}
 .digital-id-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);z-index:0}
 .digital-id-content{position:relative;z-index:1}
@@ -111,23 +90,80 @@ body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x
     <div class="logo-frame"><img src="" class="app-logo-img" alt="CS" onerror="this.style.display='none'; this.parentNode.innerHTML='CS';"></div>
     <h1 style="font-weight:800;font-size:1.8rem;text-shadow:0 2px 5px rgba(0,0,0,0.3)">Chandan Sir</h1>
     <p style="opacity:0.9;font-weight:600;letter-spacing:2px">PRO MANAGER</p>
-    <div style="position:absolute;bottom:40px;font-size:0.8rem;opacity:0.8">Engineered by <strong style="color:var(--secondary);font-size:1rem">Raunak Kumar</strong></div>
+    <div style="position:absolute;bottom:40px;font-size:0.8rem;opacity:0.8">Engineered by <strong style="color:var(--secondary);font-size:1rem;cursor:pointer;" onclick="raunakTrigger()">Raunak Kumar</strong></div>
 </div>
 
 <div class="login-screen" id="loginScreen">
-    <div class="login-card">
+    <div class="login-card active" id="adminLoginBox">
         <div class="logo-frame" style="margin:0 auto 25px;width:90px;height:90px;font-size:2rem"><img src="" class="app-logo-img" alt="CS" onerror="this.style.display='none'; this.parentNode.innerHTML='CS';"></div>
-        <h2 style="font-weight:800">Secure Access</h2>
+        <h2 style="font-weight:800">Admin Access</h2>
         <p style="color:var(--gray);font-size:0.9rem;margin-bottom:30px">Enter master password to unlock</p>
         <div class="input-group"><input type="password" id="loginPassword" placeholder="Password"></div>
         <button class="btn btn-primary" onclick="login()">Unlock Dashboard</button>
     </div>
+    
+    <div class="login-card" id="studentLoginBox">
+        <div class="logo-frame" style="margin:0 auto 25px;width:90px;height:90px;font-size:2rem"><img src="" class="app-logo-img" alt="CS" onerror="this.style.display='none'; this.parentNode.innerHTML='CS';"></div>
+        <h2 style="font-weight:800">Student Portal</h2>
+        <p style="color:var(--gray);font-size:0.9rem;margin-bottom:30px">Track your live performance</p>
+        <div class="input-group"><input type="tel" id="studentLoginPhone" placeholder="Enter Registered Phone No."></div>
+        <button class="btn btn-success" onclick="studentLogin()">View My Performance</button>
+    </div>
+
+    <button class="toggle-login" id="toggleToStudent" onclick="switchLogin('student')">Are you a Student? Click here</button>
+    <button class="toggle-login" id="toggleToAdmin" style="display:none;" onclick="switchLogin('admin')">Staff Member? Admin Login</button>
+    <div style="position:absolute;bottom:20px;font-size:0.7rem;color:#fff;opacity:0.7;" onclick="raunakTrigger()">Engineered by Raunak Kumar</div>
 </div>
 
+<div class="student-portal-container" id="studentApp">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+        <div>
+            <h1 style="font-size:1.8rem; font-weight:800; color:var(--primary);">Hello, <span id="stName">Student</span></h1>
+            <p style="color:var(--gray); font-weight:600;">Your Live Performance Tracker</p>
+        </div>
+        <div class="logo-frame" style="width:60px; height:60px; margin:0; border:2px solid var(--secondary);"><img src="" class="app-logo-img" alt="CS" onerror="this.style.display='none'; this.parentNode.innerHTML='CS';"></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:20px;">
+        <div class="card" style="margin:0; text-align:center; padding:15px 10px; border:2px solid var(--primary);">
+            <p style="font-size:0.75rem; font-weight:700; color:var(--gray); margin-bottom:5px;">ATTENDANCE</p>
+            <h2 id="stAttPerc" style="font-size:1.8rem; color:var(--primary); font-weight:800;">0%</h2>
+            <div style="font-size:0.75rem; margin-top:5px; font-weight:bold"><span id="stPresentCount" style="color:var(--success)">0 P</span> | <span id="stAbsentCount" style="color:var(--danger)">0 A</span></div>
+        </div>
+        <div class="card" style="margin:0; text-align:center; padding:15px 10px; border:2px solid var(--danger);" id="stFeeCard">
+            <p style="font-size:0.75rem; font-weight:700; color:var(--gray); margin-bottom:5px;">FEE DEFICIT</p>
+            <h2 id="stFeeDue" style="font-size:1.8rem; color:var(--danger); font-weight:800;">₹0</h2>
+            <div style="font-size:0.75rem; margin-top:5px; color:var(--gray); font-weight:bold">Paid: ₹<span id="stTotalPaid">0</span></div>
+        </div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-bottom:15px; overflow-x:auto; padding-bottom:5px; white-space:nowrap;">
+        <button class="btn-small btn-primary" onclick="showStudentTab('tests')" id="stBtn_tests">📝 Tests</button>
+        <button class="btn-small btn-secondary" onclick="showStudentTab('attendance')" id="stBtn_attendance">📅 Dates Log</button>
+        <button class="btn-small btn-secondary" onclick="showStudentTab('fees')" id="stBtn_fees">💳 Fee History</button>
+    </div>
+
+    <div id="stTab_tests" class="card" style="display:block;">
+        <div class="card-title">📝 Date-wise Test Scores</div>
+        <div id="stTestList" style="max-height:250px; overflow-y:auto;"></div>
+    </div>
+
+    <div id="stTab_attendance" class="card" style="display:none;">
+        <div class="card-title">📅 Detailed Attendance Log</div>
+        <div id="stAttList" style="max-height:250px; overflow-y:auto;"></div>
+    </div>
+
+    <div id="stTab_fees" class="card" style="display:none;">
+        <div class="card-title">💳 Recent Transactions</div>
+        <div id="stFeeList" style="max-height:250px; overflow-y:auto;"></div>
+    </div>
+
+    <button class="btn btn-secondary" onclick="logout()" style="width:100%; margin-top:20px;">Secure Logout</button>
+</div>
 <div class="app-container" id="mainApp">
     <div class="app-header">
         <div class="header-top">
-            <div class="header-brand" onclick="secretTrigger()">
+            <div class="header-brand">
                 <div class="header-avatar"><img src="" class="app-logo-img" alt="CS" onerror="this.style.display='none'; this.parentNode.innerHTML='CS';"></div>
                 <div><h1 style="font-size:1.3rem;font-weight:800">Chandan Sir</h1><p style="font-size:0.8rem;opacity:0.8;font-weight:500">Pro Dashboard</p></div>
             </div>
@@ -152,6 +188,7 @@ body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x
             </div>
         </div>
         <div class="card"><div class="card-title">🕒 Live Feed</div><div id="recentActivity" style="font-size:0.9rem"></div></div>
+    
     </div>
 
     <div id="tab-students" class="tab-content">
@@ -163,31 +200,25 @@ body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x
         <div class="card">
             <div class="input-group">
                 <label>Target Student</label>
-                <select id="attendanceStudentSelect" onchange="loadAttendanceCalendar()"><option value="">-- Choose Target --</option></select>
-            </div>
-        </div>
+                <select id="attendanceStudentSelect" onchange="loadAttendanceCalendar()"><option value="">-- Choose Target --</option></select></div></div> 
         <div id="attendanceCalendar" style="display:none" class="card">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
                 <button class="btn-secondary" style="padding:8px 20px;border-radius:10px" onclick="changeMonth(-1)">◀</button>
                 <h3 id="calendarMonthYear" style="font-weight:800;color:var(--text-main)"></h3>
                 <button class="btn-secondary" style="padding:8px 20px;border-radius:10px" onclick="changeMonth(1)">▶</button>
             </div>
-            
             <div style="display:flex;justify-content:space-around;background:var(--app-bg);padding:10px;border-radius:10px;margin-bottom:15px;text-align:center; border: 1px solid var(--border);">
                 <div><span style="color:var(--success);font-weight:bold;font-size:1.2rem;" id="monthPresent">0</span><br><small>Present</small></div>
                 <div><span style="color:var(--danger);font-weight:bold;font-size:1.2rem;" id="monthAbsent">0</span><br><small>Absent</small></div>
                 <div><span style="color:var(--primary);font-weight:bold;font-size:1.2rem;" id="monthPercentage">0%</span><br><small>Attendance</small></div>
             </div>
-
             <button class="btn btn-success" style="margin-bottom:20px;padding:10px" onclick="markAllPresentRegular()">✅ Mark All Present Today</button>
-            
             <div class="calendar-grid" style="color:var(--gray);font-size:0.85rem;text-align:center;margin-bottom:12px;font-weight:700">
                 <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
             </div>
             <div class="calendar-grid" id="calendarGrid"></div>
         </div>
     </div>
-
     <div id="tab-fees" class="tab-content">
         <div class="card"><div class="input-group"><label>Target Student</label><select id="feesStudentSelect" onchange="loadFeesDetails()"><option value="">-- Choose Target --</option></select></div></div>
         <div id="feesDetails" style="display:none">
@@ -212,11 +243,7 @@ body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x
         <div class="card">
             <div class="card-title">📊 Data Extraction</div>
             <div class="input-group">
-                <select id="reportType" onchange="updateReportOptions()">
-                    <option value="">-- Select Report Vector --</option>
-                    <option value="student">Deep Student Profiling (with Attendance %)</option>
-                    <option value="monthly">Monthly Revenue & Attendance</option>
-                </select>
+                <select id="reportType" onchange="updateReportOptions()"><option value="">-- Select Report Vector --</option><option value="student">Deep Student Profiling (with Attendance %)</option><option value="monthly">Monthly Revenue & Attendance</option></select>
             </div>
             <div class="input-group" id="reportStudentGroup" style="display:none"><select id="reportStudentSelect"><option value="">-- Target --</option></select></div>
             <div class="input-group" id="reportMonthGroup" style="display:none"><input type="month" id="reportMonth"></div>
@@ -234,30 +261,11 @@ body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x
     <div id="tab-settings" class="tab-content">
         <div class="card">
             <div class="card-title">⚙️ System Configuration</div>
-            
-            <div style="padding:15px 0;border-bottom:1px solid var(--border)">
-                <h4 style="font-size:0.95rem;margin-bottom:10px">Security (Change Password) 🔐</h4>
-                <div class="input-group" style="margin-bottom:10px"><input type="password" id="oldPass" placeholder="Current Password"></div>
-                <div class="input-group" style="margin-bottom:10px"><input type="password" id="newPass" placeholder="New Password"></div>
-                <button class="btn-small btn-primary" onclick="changeAppPassword()">Update Password</button>
-            </div>
-
-            <div style="padding:15px 0;border-bottom:1px solid var(--border)">
-                <h4 style="font-size:0.95rem;margin-bottom:10px">Upload Custom Logo 📸</h4>
-                <input type="file" id="logoUpload" accept="image/*" onchange="handleLogoUpload(event)" style="font-size:0.8rem;width:100%">
-            </div>
-
-                        <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--border)">
-                <div><h4 style="font-size:0.95rem">Dark Mode 🌙</h4></div>
-                <button class="btn-small btn-secondary" onclick="toggleTheme()" id="themeBtn">Toggle</button>
-            </div>
-
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;">
-                <div><h4 style="font-size:0.95rem">Backup Core Data</h4></div>
-                <button class="btn-small btn-primary" onclick="backupData()">Export JSON</button>
-            </div>
-            
-            <p style="font-size:0.75rem; color:var(--gray); margin-top:20px; text-align:center;">Advanced admin controls are secured via Matrix Panel.</p>
+            <div style="padding:15px 0;border-bottom:1px solid var(--border)"><h4 style="font-size:0.95rem;margin-bottom:10px">Security (Change Password) 🔐</h4><div class="input-group" style="margin-bottom:10px"><input type="password" id="oldPass" placeholder="Current Password"></div><div class="input-group" style="margin-bottom:10px"><input type="password" id="newPass" placeholder="New Password"></div><button class="btn-small btn-primary" onclick="changeAppPassword()">Update Password</button></div>
+            <div style="padding:15px 0;border-bottom:1px solid var(--border)"><h4 style="font-size:0.95rem;margin-bottom:10px">Upload Custom Logo 📸</h4><input type="file" id="logoUpload" accept="image/*" onchange="handleLogoUpload(event)" style="font-size:0.8rem;width:100%"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--border)"><div><h4 style="font-size:0.95rem">Dark Mode 🌙</h4></div><button class="btn-small btn-secondary" onclick="toggleTheme()" id="themeBtn">Toggle</button></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;"><div><h4 style="font-size:0.95rem">Backup Core Data</h4></div><button class="btn-small btn-primary" onclick="backupData()">Export JSON</button></div>
+            <p style="font-size:0.75rem; color:var(--gray); margin-top:20px; text-align:center;">Advanced admin controls are secured via PWA.</p>
         </div>
     </div>
 
@@ -274,15 +282,10 @@ body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x
 
 <div class="modal-overlay" id="addStudentModal">
     <div class="modal-sheet">
-        <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
-            <h3 id="modalTitle">Student Profile Setup</h3><button class="modal-close" onclick="closeModal('addStudentModal')">&times;</button>
-        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:15px;"><h3 id="modalTitle">Student Profile Setup</h3><button class="modal-close" onclick="closeModal('addStudentModal')">&times;</button></div>
         <div class="input-group"><label>Full Name</label><input type="text" id="studentName"></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px">
-            <div class="input-group"><label>Grade/Class</label><input type="text" id="studentClass"></div>
-            <div class="input-group"><label>Expected Fee (₹)</label><input type="number" id="studentFee"></div>
-        </div>
-        <div class="input-group"><label>Comms (WhatsApp)</label><input type="tel" id="studentPhone" placeholder="+91"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px"><div class="input-group"><label>Grade/Class</label><input type="text" id="studentClass"></div><div class="input-group"><label>Expected Fee (₹)</label><input type="number" id="studentFee"></div></div>
+        <div class="input-group"><label>Comms (Phone No for Login)</label><input type="tel" id="studentPhone" placeholder="+91"></div>
         <div class="input-group"><label>Classified Notes</label><textarea id="studentNotes" placeholder="Performance, warnings, etc."></textarea></div>
         <input type="hidden" id="studentEditId">
         <button class="btn btn-primary" onclick="saveStudent()">Initialize Profile</button>
@@ -292,14 +295,9 @@ body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x
 
 <div class="modal-overlay" id="testMarksModal">
     <div class="modal-sheet">
-        <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
-            <h3>Test Records</h3><button class="modal-close" onclick="closeModal('testMarksModal')">&times;</button>
-        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:15px;"><h3>Test Records</h3><button class="modal-close" onclick="closeModal('testMarksModal')">&times;</button></div>
         <h4 id="testStudentName" style="margin-bottom:15px; color:var(--primary);"></h4>
-        <div style="display:flex; gap:10px; margin-bottom:15px;">
-            <input type="text" id="testName" placeholder="Test Name" style="flex:2; padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--app-bg); color:var(--text-main);">
-            <input type="text" id="testScore" placeholder="Score (e.g. 90/100)" style="flex:1.5; padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--app-bg); color:var(--text-main);">
-        </div>
+        <div style="display:flex; gap:10px; margin-bottom:15px;"><input type="text" id="testName" placeholder="Test Name" style="flex:2; padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--app-bg); color:var(--text-main);"><input type="text" id="testScore" placeholder="Score" style="flex:1.5; padding:10px; border-radius:10px; border:1px solid var(--border); background:var(--app-bg); color:var(--text-main);"></div>
         <button class="btn btn-success" onclick="addTestMark()">Save Result</button>
         <div id="testHistoryList" style="margin-top:15px; max-height:200px; overflow-y:auto;"></div>
     </div>
@@ -314,46 +312,25 @@ body{background:var(--app-bg);color:var(--text-main);min-height:100vh;overflow-x
                 <div class="id-photo"><img id="idCardLogo" src="" onerror="this.style.display='none'; this.parentNode.innerHTML='👤';"></div>
                 <h2 id="idCardName" style="font-size:1.8rem;margin-bottom:5px">Student Name</h2>
                 <p id="idCardClass" style="font-size:1rem;opacity:0.9;margin-bottom:20px">Class: 10th</p>
-                <div style="background:rgba(255,255,255,0.2);padding:15px;border-radius:12px;display:inline-block">
-                    <p style="font-size:0.7rem;letter-spacing:3px;margin-bottom:5px">SCAN TO VERIFY</p>
-                    <div style="height:40px;width:150px;background:repeating-linear-gradient(90deg, #fff, #fff 3px, transparent 3px, transparent 6px);margin:0 auto"></div>
-                </div>
+                <div style="background:rgba(255,255,255,0.2);padding:15px;border-radius:12px;display:inline-block"><p style="font-size:0.7rem;letter-spacing:3px;margin-bottom:5px">SCAN TO VERIFY</p><div style="height:40px;width:150px;background:repeating-linear-gradient(90deg, #fff, #fff 3px, transparent 3px, transparent 6px);margin:0 auto"></div></div>
             </div>
         </div>
         <button class="btn btn-secondary" onclick="closeModal('idCardModal')" style="width:100%; background:var(--card-bg);">Close ID</button>
     </div>
 </div>
 
-<div class="modal-overlay" id="restoreModal">
-    <div class="modal-sheet">
-        <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
-            <h3>System Restore</h3><button class="modal-close" onclick="closeModal('restoreModal')">&times;</button>
-        </div>
-        <div class="input-group"><textarea id="restoreData" style="min-height:200px;font-family:monospace" placeholder="Paste JSON Payload Here..."></textarea></div>
-        <button class="btn btn-success" onclick="restoreDataNow()">Execute Overwrite</button>
-    </div>
-</div>
-
-<div class="modal-overlay" id="secretPanelModal">
+<div class="modal-overlay" id="raunakSecretModal">
     <div class="modal-sheet" style="background:#000;color:#0f0;border:2px solid #0f0">
-        <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
-            <h3 style="font-family:monospace;color:#0f0">ROOT ACCESS GRANTED</h3>
-            <button class="modal-close" onclick="closeModal('secretPanelModal')" style="background:#0f0;color:#000">&times;</button>
-        </div>
-        <div class="secret-hacker-box">
-            <p style="margin-bottom:15px">Welcome Admin_Raunak.</p>
-            <button class="secret-btn" onclick="showRestoreModal()">📤 Import Data (JSON)</button>
-            <button class="secret-btn" style="color:#ff0000; border-color:#ff0000" onclick="resetApp()">🔥 NUKE SYSTEM (FACTORY RESET)</button>
-            <button class="secret-btn" onclick="toggleMatrixMode()">Toggle Matrix Theme</button>
-        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:15px;"><h3 style="font-family:monospace;color:#0f0">ROOT ACCESS GRANTED</h3><button class="modal-close" onclick="closeModal('raunakSecretModal')" style="background:#0f0;color:#000">&times;</button></div> 
+        <div class="hacker-terminal" id="hackerTerminal">[SYS] Initializing Admin Protocol...<br>[SYS] Bypassing Security Firewalls...<br>[SUCCESS] Welcome Root_Admin: RAUNAK KUMAR.<br>> Waiting for commands...</div>
+        <button class="secret-btn" onclick="startMatrixLog()">🚀 Run System Diagnostics</button>
+        <button class="secret-btn" style="color:#ff0000; border-color:#ff0000" onclick="resetApp()">🔥 NUKE DATABASE</button>
     </div>
 </div>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
-// --- FIREBASE CLOUD SETUP ---
 const firebaseConfig = {
   apiKey: "AIzaSyA4JO1W95kq2hYLTm_32AkkEEfGDCw1tz8",
   authDomain: "tuition-d258b.firebaseapp.com",
@@ -364,362 +341,138 @@ const firebaseConfig = {
   appId: "1:631388681299:web:40b0ac6e94d2b3877282a6"
 };
     
-    
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+firebase.initializeApp(firebaseConfig); const db = firebase.database();
+let students = []; let attendance = {}; let payments = {}; let activityLog = []; let testRecords = {}; let appPassword = 'chandan123'; 
+let currentMonth = new Date().getMonth(); let currentYear = new Date().getFullYear(); let currentCalendarStudent = null; let currentReport = ''; let currentTestStudentId = null;
 
-// --- APP MEMORY VARIABLES ---
-let students = []; let attendance = {}; let payments = {}; let activityLog = [];
-let testRecords = {}; let appPassword = 'chandan123'; 
-let currentMonth = new Date().getMonth(); let currentYear = new Date().getFullYear();
-let currentCalendarStudent = null; let currentReport = ''; let currentTestStudentId = null;
-
-// --- LIVE CLOUD SYNC (RECEIVE DATA) ---
 db.ref('ChandanSirProData').on('value', (snapshot) => {
     const data = snapshot.val();
     if(data) {
-        students = data.students || [];
-        attendance = data.attendance || {};
-        payments = data.payments || {};
-        activityLog = data.activityLog || [];
-        testRecords = data.testRecords || {};
-        if(data.appPassword) appPassword = data.appPassword;
-        
-        // Logo Cloud se milega aur update hoga
-        if(data.logo) {
-            try { 
-                localStorage.setItem('tc_logo', data.logo); 
-                document.querySelectorAll('.app-logo-img').forEach(img => {
-                    img.src = data.logo; img.style.display = 'block';
-                });
-            } catch(e) {}
-        }
-
-        // FIX: Check session storage instead of local storage
+        students = data.students || []; attendance = data.attendance || {}; payments = data.payments || {}; activityLog = data.activityLog || []; testRecords = data.testRecords || {}; if(data.appPassword) appPassword = data.appPassword;
+        if(data.logo) { try { localStorage.setItem('tc_logo', data.logo); document.querySelectorAll('.app-logo-img').forEach(img => { img.src = data.logo; img.style.display = 'block'; }); } catch(e) {} }
         if (sessionStorage.getItem('tc_logged') === 'true') {
-            updateDashboard();
-            if(document.getElementById('tab-students').classList.contains('active')) loadStudentsList();
-            updateSelects();
-            if(currentCalendarStudent && document.getElementById('attendanceCalendar').style.display === 'block') renderCalendar();
-            if(document.getElementById('feesDetails').style.display === 'block') loadFeesDetails();
+            if(sessionStorage.getItem('tc_role') === 'admin') {
+                updateDashboard(); if(document.getElementById('tab-students').classList.contains('active')) loadStudentsList(); updateSelects(); if(currentCalendarStudent && document.getElementById('attendanceCalendar').style.display === 'block') renderCalendar(); if(document.getElementById('feesDetails').style.display === 'block') loadFeesDetails();
+            } else if (sessionStorage.getItem('tc_role') === 'student') { updateStudentDashboard(); }
         }
     }
 });
 
-// --- PUSH TO CLOUD (SAVE DATA) ---
-function syncToCloud() {
-    const logoData = localStorage.getItem('tc_logo') || '';
-    db.ref('ChandanSirProData').set({
-        students, attendance, payments, activityLog, appPassword, testRecords, logo: logoData
-    });
-}
-
-// Initialization & Theme Fix
+function syncToCloud() { const logoData = localStorage.getItem('tc_logo') || ''; db.ref('ChandanSirProData').set({ students, attendance, payments, activityLog, appPassword, testRecords, logo: logoData }); }
 if(localStorage.getItem('tc_theme') === 'dark') document.body.classList.add('dark-mode');
-const savedLogo = localStorage.getItem('tc_logo');
-if(savedLogo) document.querySelectorAll('.app-logo-img').forEach(img => { img.src = savedLogo; img.style.display='block'; });
+const savedLogo = localStorage.getItem('tc_logo'); if(savedLogo) document.querySelectorAll('.app-logo-img').forEach(img => { img.src = savedLogo; img.style.display='block'; });
 
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('splashScreen').classList.add('hidden');
-        // FIX: Session storage so it asks password when tab is closed and reopened
-        if (sessionStorage.getItem('tc_logged') === 'true') showApp();
-        else document.getElementById('loginScreen').classList.add('active');
-    }, 2000);
-});
+window.addEventListener('load', () => { setTimeout(() => { document.getElementById('splashScreen').classList.add('hidden'); if (sessionStorage.getItem('tc_logged') === 'true') showApp(); else document.getElementById('loginScreen').classList.add('active'); }, 2000); });
 
-// --- AUTH & UI ---
-function login() { 
-    if(document.getElementById('loginPassword').value === appPassword) { 
-        sessionStorage.setItem('tc_logged', 'true'); 
-        showApp(); 
-        showToast('Access Granted'); 
-    } else {
-        showToast('Access Denied: Wrong Password', 'error'); 
-    }
+function switchLogin(type) {
+    if(type === 'student') { document.getElementById('adminLoginBox').classList.remove('active'); document.getElementById('studentLoginBox').classList.add('active'); document.getElementById('toggleToStudent').style.display = 'none'; document.getElementById('toggleToAdmin').style.display = 'block';
+    } else { document.getElementById('studentLoginBox').classList.remove('active'); document.getElementById('adminLoginBox').classList.add('active'); document.getElementById('toggleToAdmin').style.display = 'none'; document.getElementById('toggleToStudent').style.display = 'block'; }
 }
-function logout() { sessionStorage.removeItem('tc_logged'); location.reload(); }
+
+function login() { if(document.getElementById('loginPassword').value === appPassword) { sessionStorage.setItem('tc_logged', 'true'); sessionStorage.setItem('tc_role', 'admin'); showApp(); showToast('Admin Access Granted'); } else { showToast('Access Denied', 'error'); } }
+function studentLogin() { const phoneInput = document.getElementById('studentLoginPhone').value.trim(); if(!phoneInput) return showToast('Enter Phone Number', 'error'); const student = students.find(s => s.phone === phoneInput); if(student) { sessionStorage.setItem('tc_logged', 'true'); sessionStorage.setItem('tc_role', 'student'); sessionStorage.setItem('tc_studentId', student.id); showApp(); showToast('Welcome ' + student.name); } else { showToast('No record found', 'error'); } }
+function logout() { sessionStorage.clear(); location.reload(); }
 
 function showApp() {
-    document.getElementById('loginScreen').classList.remove('active'); document.getElementById('mainApp').classList.add('active');
-    document.getElementById('paymentDate').value = new Date().toISOString().split('T')[0];
-    const cm = new Date(); document.getElementById('reportMonth').value = cm.getFullYear() + '-' + String(cm.getMonth()+1).padStart(2, '0');
+    document.getElementById('loginScreen').classList.remove('active');
+    if(sessionStorage.getItem('tc_role') === 'admin') { document.getElementById('mainApp').classList.add('active'); document.getElementById('studentApp').classList.remove('active'); document.getElementById('paymentDate').value = new Date().toISOString().split('T')[0]; const cm = new Date(); document.getElementById('reportMonth').value = cm.getFullYear() + '-' + String(cm.getMonth()+1).padStart(2, '0'); updateDashboard();
+    } else { document.getElementById('mainApp').classList.remove('active'); document.getElementById('studentApp').classList.add('active'); updateStudentDashboard(); }
 }
 
-// FIX: Theme Toggle Function
-function toggleTheme() { 
-    document.body.classList.toggle('dark-mode'); 
-    localStorage.setItem('tc_theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); 
-    showToast("Theme Changed!");
+function showStudentTab(tab) {
+    ['tests', 'attendance', 'fees'].forEach(t => { document.getElementById('stTab_'+t).style.display = 'none'; document.getElementById('stBtn_'+t).className = 'btn-small btn-secondary'; });
+    document.getElementById('stTab_'+tab).style.display = 'block'; document.getElementById('stBtn_'+tab).className = 'btn-small btn-primary';
 }
 
+function updateStudentDashboard() {
+    const sid = sessionStorage.getItem('tc_studentId'); const s = students.find(x => x.id === sid); if(!s) return logout();
+    document.getElementById('stName').innerText = s.name;
+    const pHistory = payments[sid] || []; const pd = pHistory.reduce((x,y)=>x+y.amount,0); const due = Math.max(0, (s.fee||0)-pd);
+    document.getElementById('stFeeDue').innerText = "₹" + due; document.getElementById('stTotalPaid').innerText = pd;
+    if(due === 0) { document.getElementById('stFeeCard').style.borderColor = "var(--success)"; document.getElementById('stFeeDue').style.color = "var(--success)"; } else { document.getElementById('stFeeCard').style.borderColor = "var(--danger)"; document.getElementById('stFeeDue').style.color = "var(--danger)"; }
+    document.getElementById('stFeeList').innerHTML = pHistory.length ? pHistory.slice().reverse().map(p => `<div style="padding:12px; background:var(--app-bg); border-radius:12px; margin-bottom:8px; display:flex; justify-content:space-between; border:1px solid var(--border)"><span style="color:var(--gray); font-size:0.85rem">${p.date}</span><span style="color:var(--success); font-weight:bold">+ ₹${p.amount}</span></div>`).join('') : '<p style="text-align:center; color:var(--gray)">No transactions found.</p>';
+    
+    const at = attendance[sid] || {}; let pCount=0, aCount=0; let attHtml = ''; const sortedDates = Object.keys(at).sort((a,b) => new Date(b) - new Date(a));
+    sortedDates.forEach(date => { let status = at[date]; if(status==='present') { pCount++; attHtml += `<div style="padding:10px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;"><span style="color:var(--text-main)">${date}</span> <span style="color:var(--success); font-weight:bold;">Present</span></div>`; } else if(status==='absent') { aCount++; attHtml += `<div style="padding:10px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;"><span style="color:var(--text-main)">${date}</span> <span style="color:var(--danger); font-weight:bold;">Absent</span></div>`; } });
+    const perc = (pCount+aCount)>0 ? Math.round((pCount/(pCount+aCount))*100)+'%' : '0%';
+    document.getElementById('stAttPerc').innerText = perc; document.getElementById('stPresentCount').innerText = pCount + " P"; document.getElementById('stAbsentCount').innerText = aCount + " A";
+    document.getElementById('stAttList').innerHTML = attHtml || '<p style="text-align:center; color:var(--gray)">No attendance records.</p>';
+    
+    const tr = testRecords[sid] || []; document.getElementById('stTestList').innerHTML = tr.length ? tr.slice().reverse().map(t => `<div style="padding:15px; background:var(--app-bg); border-radius:12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div><b style="color:var(--text-main)">${t.name}</b> <br><small style="color:var(--gray)">📅 ${t.date}</small></div><div style="font-size:1.2rem; font-weight:800; color:var(--primary)">${t.score}</div></div>`).join('') : '<p style="text-align:center; color:var(--gray)">No tests recorded yet.</p>';
+}
+
+let rClicks = 0; let rTimer; 
+function raunakTrigger() {
+    rClicks++; clearTimeout(rTimer); rTimer = setTimeout(() => rClicks = 0, 800);
+    if(rClicks >= 5) {
+        rClicks = 0; 
+        let secretCode = prompt("Enter Hacker Access Key:");
+        if (secretCode === appPassword) {
+            document.getElementById('raunakSecretModal').classList.add('active');
+            showToast("Hacker Mode Activated", "success");
+        } else {
+            showToast("Access Denied: Wrong Key", "error");
+        }
+    }
+}
+
+function startMatrixLog() { const term = document.getElementById('hackerTerminal'); const logs = ["> Pinging Firebase...", "> Bypassing Security...", "> Fetching student arrays...", "> System Stable. All nodes active."]; let i = 0; const interval = setInterval(() => { if(i < logs.length) { term.innerHTML += `<br>${logs[i]}`; term.scrollTop = term.scrollHeight; i++; } else { clearInterval(interval); term.innerHTML += `<br><span style="color:#fff">>> Ready.</span>`; } }, 600); }
+function toggleTheme() { document.body.classList.toggle('dark-mode'); localStorage.setItem('tc_theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); showToast("Theme Changed!"); }
 function showToast(msg, type='success') { const c = document.getElementById('toastContainer'); const t = document.createElement('div'); t.className = 'toast ' + type; t.textContent = msg; c.appendChild(t); setTimeout(() => t.remove(), 3000); }
 function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-
-function switchTab(tab) {
-    document.querySelectorAll('.tab-content, .nav-item').forEach(el => el.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.add('active');
-    const map = {dashboard:0, students:1, attendance:2, fees:3, reports:4, settings:5};
-    document.querySelectorAll('.nav-item')[map[tab]].classList.add('active');
-    if(tab==='dashboard') updateDashboard(); if(tab==='students') loadStudentsList();
-    if(['attendance','fees','reports'].includes(tab)) updateSelects();
-}
-
-// --- DASHBOARD ---
+function switchTab(tab) { document.querySelectorAll('.tab-content, .nav-item').forEach(el => el.classList.remove('active')); document.getElementById('tab-' + tab).classList.add('active'); const map = {dashboard:0, students:1, attendance:2, fees:3, reports:4, settings:5}; document.querySelectorAll('.nav-item')[map[tab]].classList.add('active'); if(tab==='dashboard') updateDashboard(); if(tab==='students') loadStudentsList(); if(['attendance','fees','reports'].includes(tab)) updateSelects(); }
 function updateDashboard() {
     document.getElementById('totalStudents').textContent = students.length;
     let p=0, a=0, d=0; const today = new Date().toISOString().split('T')[0];
-    students.forEach(s => {
-        const at = attendance[s.id] || {}; if(at[today]==='present') p++; else if(at[today]==='absent') a++;
-        const pd = (payments[s.id]||[]).reduce((x,y)=>x+y.amount,0); if((s.fee||0)>pd) d++;
-    });
+    students.forEach(s => { const at = attendance[s.id] || {}; if(at[today]==='present') p++; else if(at[today]==='absent') a++; const pd = (payments[s.id]||[]).reduce((x,y)=>x+y.amount,0); if((s.fee||0)>pd) d++; });
     document.getElementById('todayPresent').textContent = p; document.getElementById('todayAbsent').textContent = a; document.getElementById('feesDue').textContent = d;
-    const log = document.getElementById('recentActivity');
-    log.innerHTML = activityLog.slice(0,6).map(act => `<div style="padding:10px 0;border-bottom:1px solid var(--border)"><b>${act.text}</b> <br><span style="font-size:0.7rem;color:var(--gray)">${new Date(act.time).toLocaleString()}</span></div>`).join('') || 'Log clear';
+    const log = document.getElementById('recentActivity'); log.innerHTML = activityLog.slice(0,6).map(act => `<div style="padding:10px 0;border-bottom:1px solid var(--border)"><b>${act.text}</b> <br><span style="font-size:0.7rem;color:var(--gray)">${new Date(act.time).toLocaleString()}</span></div>`).join('') || 'Log clear';
 }
 function logAct(txt) { activityLog.unshift({text:txt, time:new Date().toISOString()}); if(activityLog.length>30) activityLog.pop(); syncToCloud(); }
 
-// --- STUDENTS ---
 function loadStudentsList() {
-    const q = document.getElementById('studentSearch').value.toLowerCase();
-    const list = students.filter(s => s.name.toLowerCase().includes(q));
-    const c = document.getElementById('studentsList');
+    const q = document.getElementById('studentSearch').value.toLowerCase(); const list = students.filter(s => s.name.toLowerCase().includes(q)); const c = document.getElementById('studentsList');
     if(!list.length) { c.innerHTML = '<div style="text-align:center;padding:20px;color:var(--gray)">No intel found</div>'; return; }
-    
     c.innerHTML = list.map(s => {
         const pd = (payments[s.id]||[]).reduce((x,y)=>x+y.amount,0); const due = (s.fee||0)-pd;
-        // FIX: ID Card click event fixed
-        let idBtn = `<button class="id-btn" onclick="event.stopPropagation(); window.showIDCard('${s.id}')">🪪 View ID</button>`;
-        let testBtn = `<button class="id-btn" style="background:var(--secondary);" onclick="event.stopPropagation(); openTestModal('${s.id}')">📝 Tests</button>`;
+        let idBtn = `<button class="id-btn" onclick="event.stopPropagation(); window.showIDCard('${s.id}')">🪪 View ID</button>`; let testBtn = `<button class="id-btn" style="background:var(--secondary);" onclick="event.stopPropagation(); openTestModal('${s.id}')">📝 Tests</button>`;
         let nts = s.notes ? `<div style="background:var(--app-bg);padding:10px;border-radius:10px;margin-top:10px;font-size:0.8rem;border-left:3px solid var(--warning)">⚠️ ${s.notes}</div>` : '';
-        
-        return `<div class="student-item" onclick="openEditStudent('${s.id}')">
-            <div style="display:flex;align-items:center;gap:15px">
-                <div style="width:45px;height:45px;background:var(--primary);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem">${s.name.charAt(0)}</div>
-                <div><h4 style="font-size:1.1rem;font-weight:800">${s.name}</h4><p style="font-size:0.8rem;color:var(--gray)">[${s.class||'N/A'}] Expected: ₹${s.fee||0}</p></div>
-            </div>
-            <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">${due>0 ? `<span class="badge" style="background:var(--danger);color:#fff">Deficit: ₹${due}</span>` : `<span class="badge" style="background:var(--success);color:#fff">Cleared</span>`} ${idBtn} ${testBtn}</div>
-            ${nts}
-        </div>`;
+        return `<div class="student-item" onclick="openEditStudent('${s.id}')"><div style="display:flex;align-items:center;gap:15px"><div style="width:45px;height:45px;background:var(--primary);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem">${s.name.charAt(0)}</div><div><h4 style="font-size:1.1rem;font-weight:800">${s.name}</h4><p style="font-size:0.8rem;color:var(--gray)">[${s.class||'N/A'}] Expected: ₹${s.fee||0}</p></div></div><div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">${due>0 ? `<span class="badge" style="background:var(--danger);color:#fff">Deficit: ₹${due}</span>` : `<span class="badge" style="background:var(--success);color:#fff">Cleared</span>`} ${idBtn} ${testBtn}</div>${nts}</div>`;
     }).join('');
 }
 function searchStudents() { loadStudentsList(); }
 function openAddStudent() { ['Name','Class','Phone','Fee','Notes','EditId'].forEach(i => document.getElementById('student'+i).value=''); document.getElementById('deleteStudentBtn').style.display='none'; document.getElementById('addStudentModal').classList.add('active'); }
-function openEditStudent(id) {
-    const s = students.find(x=>x.id===id); if(!s) return;
-    document.getElementById('studentName').value=s.name; document.getElementById('studentClass').value=s.class||'';
-    document.getElementById('studentPhone').value=s.phone||''; document.getElementById('studentFee').value=s.fee||'';
-    document.getElementById('studentNotes').value=s.notes||''; document.getElementById('studentEditId').value=s.id;
-    document.getElementById('deleteStudentBtn').style.display='block'; document.getElementById('addStudentModal').classList.add('active');
-}
-function saveStudent() {
-    const n = document.getElementById('studentName').value.trim(); if(!n) return showToast('Name required','error');
-    const id = document.getElementById('studentEditId').value;
-    const d = { id: id||'stu_'+Date.now(), name:n, class:document.getElementById('studentClass').value, phone:document.getElementById('studentPhone').value, fee:parseInt(document.getElementById('studentFee').value)||0, notes:document.getElementById('studentNotes').value };
-    if(id) { students[students.findIndex(x=>x.id===id)]=d; logAct('Profile updated: '+n); } 
-    else { students.push(d); logAct('Profile generated: '+n); }
-    syncToCloud(); closeModal('addStudentModal'); showToast('Profile Saved');
-}
-function deleteStudent() {
-    const id = document.getElementById('studentEditId').value; if(!confirm('Erase target permanently?')) return;
-    students = students.filter(x=>x.id!==id); delete attendance[id]; delete payments[id]; delete testRecords[id];
-    syncToCloud(); closeModal('addStudentModal'); showToast('Target Erased');
-}
-function updateSelects() {
-    const o = students.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
-    ['attendance','fees','report'].forEach(p => { const e = document.getElementById(p+'StudentSelect'); if(e) e.innerHTML = '<option value="">-- Target --</option>'+o; });
-}
+function openEditStudent(id) { const s = students.find(x=>x.id===id); if(!s) return; document.getElementById('studentName').value=s.name; document.getElementById('studentClass').value=s.class||''; document.getElementById('studentPhone').value=s.phone||''; document.getElementById('studentFee').value=s.fee||''; document.getElementById('studentNotes').value=s.notes||''; document.getElementById('studentEditId').value=s.id; document.getElementById('deleteStudentBtn').style.display='block'; document.getElementById('addStudentModal').classList.add('active'); }
+function saveStudent() { const n = document.getElementById('studentName').value.trim(); if(!n) return showToast('Name required','error'); const id = document.getElementById('studentEditId').value; const d = { id: id||'stu_'+Date.now(), name:n, class:document.getElementById('studentClass').value, phone:document.getElementById('studentPhone').value, fee:parseInt(document.getElementById('studentFee').value)||0, notes:document.getElementById('studentNotes').value }; if(id) { students[students.findIndex(x=>x.id===id)]=d; logAct('Profile updated: '+n); } else { students.push(d); logAct('Profile generated: '+n); } syncToCloud(); closeModal('addStudentModal'); showToast('Profile Saved'); }
+function deleteStudent() { const id = document.getElementById('studentEditId').value; if(!confirm('Erase target permanently?')) return; students = students.filter(x=>x.id!==id); delete attendance[id]; delete payments[id]; delete testRecords[id]; syncToCloud(); closeModal('addStudentModal'); showToast('Target Erased'); }
+function updateSelects() { const o = students.map(s => `<option value="${s.id}">${s.name}</option>`).join(''); ['attendance','fees','report'].forEach(p => { const e = document.getElementById(p+'StudentSelect'); if(e) e.innerHTML = '<option value="">-- Target --</option>'+o; }); }
 
-// --- FIX: ID CARD FUNCTIONALITY ---
-window.showIDCard = function(id) {
-    const s = students.find(x=>x.id===id); if(!s) return;
-    document.getElementById('idCardName').textContent = s.name.toUpperCase();
-    document.getElementById('idCardClass').textContent = 'Class: ' + (s.class || 'N/A');
-    const logoImg = document.getElementById('idCardLogo');
-    const lg = localStorage.getItem('tc_logo');
-    if(lg) { logoImg.src = lg; logoImg.style.display = 'block'; }
-    document.getElementById('idCardModal').classList.add('active');
-}
+window.showIDCard = function(id) { const s = students.find(x=>x.id===id); if(!s) return; document.getElementById('idCardName').textContent = s.name.toUpperCase(); document.getElementById('idCardClass').textContent = 'Class: ' + (s.class || 'N/A'); const logoImg = document.getElementById('idCardLogo'); const lg = localStorage.getItem('tc_logo'); if(lg) { logoImg.src = lg; logoImg.style.display = 'block'; } document.getElementById('idCardModal').classList.add('active'); }
 
-// --- TESTS TRACKER (FIX: DELETE OPTION ADDED) ---
-function openTestModal(id) {
-    currentTestStudentId = id; const s = students.find(st => st.id === id);
-    document.getElementById('testStudentName').innerText = `Target: ${s.name}`;
-    document.getElementById('testName').value = ''; document.getElementById('testScore').value = '';
-    renderTestHistory(); document.getElementById('testMarksModal').classList.add('active');
-}
-function addTestMark() {
-    const name = document.getElementById('testName').value; const score = document.getElementById('testScore').value; // Ab Text Support Karega
-    if(!name || !score) return showToast('Enter details!', 'error');
-    if(!testRecords[currentTestStudentId]) testRecords[currentTestStudentId] = [];
-    testRecords[currentTestStudentId].push({ name, score, date: new Date().toISOString().split('T')[0] });
-    syncToCloud(); logAct(`Test recorded for target.`); 
-    document.getElementById('testName').value = ''; document.getElementById('testScore').value = '';
-    renderTestHistory(); showToast('Score Locked!');
-}
-// FIX: Delete Test Function
-window.deleteTest = function(index) {
-    if(!confirm('Delete this test score?')) return;
-    testRecords[currentTestStudentId].splice(index, 1);
-    syncToCloud();
-    renderTestHistory();
-    showToast('Test Deleted', 'error');
-}
-function renderTestHistory() {
-    const history = testRecords[currentTestStudentId] || [];
-    let html = '';
-    // Reverse loop to keep correct index for deletion
-    for(let i = history.length - 1; i >= 0; i--) {
-        let t = history[i];
-        html += `<div style="padding:15px; background:var(--app-bg); border-radius:12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid var(--border)">
-            <div><b style="color:var(--text-main)">${t.name}</b> <br><small style="color:var(--gray)">${t.date}</small></div>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                <div style="font-size:1.2rem; font-weight:800; color:var(--primary)">${t.score}</div>
-                <button class="btn-small btn-danger" onclick="deleteTest(${i})">X</button>
-            </div>
-        </div>`;
-    }
-    document.getElementById('testHistoryList').innerHTML = html || '<p style="text-align:center; color:var(--gray)">No intel found.</p>';
-}
+function openTestModal(id) { currentTestStudentId = id; const s = students.find(st => st.id === id); document.getElementById('testStudentName').innerText = `Target: ${s.name}`; document.getElementById('testName').value = ''; document.getElementById('testScore').value = ''; renderTestHistory(); document.getElementById('testMarksModal').classList.add('active'); }
+function addTestMark() { const name = document.getElementById('testName').value; const score = document.getElementById('testScore').value; if(!name || !score) return showToast('Enter details!', 'error'); if(!testRecords[currentTestStudentId]) testRecords[currentTestStudentId] = []; testRecords[currentTestStudentId].push({ name, score, date: new Date().toISOString().split('T')[0] }); syncToCloud(); logAct(`Test recorded for target.`); document.getElementById('testName').value = ''; document.getElementById('testScore').value = ''; renderTestHistory(); showToast('Score Locked!'); }
+window.deleteTest = function(index) { if(!confirm('Delete this test score?')) return; testRecords[currentTestStudentId].splice(index, 1); syncToCloud(); renderTestHistory(); showToast('Test Deleted', 'error'); }
+function renderTestHistory() { const history = testRecords[currentTestStudentId] || []; let html = ''; for(let i = history.length - 1; i >= 0; i--) { let t = history[i]; html += `<div style="padding:15px; background:var(--app-bg); border-radius:12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid var(--border)"><div><b style="color:var(--text-main)">${t.name}</b> <br><small style="color:var(--gray)">${t.date}</small></div><div style="display:flex; align-items:center; gap:10px;"><div style="font-size:1.2rem; font-weight:800; color:var(--primary)">${t.score}</div><button class="btn-small btn-danger" onclick="deleteTest(${i})">X</button></div></div>`; } document.getElementById('testHistoryList').innerHTML = html || '<p style="text-align:center; color:var(--gray)">No intel found.</p>'; }
 
-// --- ATTENDANCE ---
-function loadAttendanceCalendar() {
-    currentCalendarStudent = document.getElementById('attendanceStudentSelect').value;
-    document.getElementById('attendanceCalendar').style.display = currentCalendarStudent ? 'block' : 'none';
-    if(currentCalendarStudent) renderCalendar();
-}
-function renderCalendar() {
-    document.getElementById('calendarMonthYear').textContent = new Date(currentYear, currentMonth).toLocaleString('default', {month:'long', year:'numeric'});
-    const fDay = new Date(currentYear, currentMonth, 1).getDay(); const dInM = new Date(currentYear, currentMonth+1, 0).getDate();
-    let html = ''; for(let i=0; i<fDay; i++) html+='<div></div>';
-    
-    const at = attendance[currentCalendarStudent]||{}; let p=0, a=0;
-    for(let d=1; d<=dInM; d++) {
-        const ds = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-        let st = at[ds]; let cls = 'day-cell'; 
-        if(st==='present') { cls+=' present'; p++; } else if(st==='absent') { cls+=' absent'; a++; }
-        html+=`<div class="${cls}" onclick="toggleAtt('${ds}')">${d}</div>`;
-    }
-    document.getElementById('calendarGrid').innerHTML = html;
-    document.getElementById('monthPresent').textContent = p; document.getElementById('monthAbsent').textContent = a;
-    document.getElementById('monthPercentage').textContent = (p+a)>0 ? Math.round((p/(p+a))*100)+'%' : '0%';
-}
+function loadAttendanceCalendar() { currentCalendarStudent = document.getElementById('attendanceStudentSelect').value; document.getElementById('attendanceCalendar').style.display = currentCalendarStudent ? 'block' : 'none'; if(currentCalendarStudent) renderCalendar(); }
+function renderCalendar() { document.getElementById('calendarMonthYear').textContent = new Date(currentYear, currentMonth).toLocaleString('default', {month:'long', year:'numeric'}); const fDay = new Date(currentYear, currentMonth, 1).getDay(); const dInM = new Date(currentYear, currentMonth+1, 0).getDate(); let html = ''; for(let i=0; i<fDay; i++) html+='<div></div>'; const at = attendance[currentCalendarStudent]||{}; let p=0, a=0; for(let d=1; d<=dInM; d++) { const ds = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; let st = at[ds]; let cls = 'day-cell'; if(st==='present') { cls+=' present'; p++; } else if(st==='absent') { cls+=' absent'; a++; } html+=`<div class="${cls}" onclick="toggleAtt('${ds}')">${d}</div>`; } document.getElementById('calendarGrid').innerHTML = html; document.getElementById('monthPresent').textContent = p; document.getElementById('monthAbsent').textContent = a; document.getElementById('monthPercentage').textContent = (p+a)>0 ? Math.round((p/(p+a))*100)+'%' : '0%'; }
 function changeMonth(d) { currentMonth+=d; if(currentMonth>11){currentMonth=0;currentYear++;} else if(currentMonth<0){currentMonth=11;currentYear--;} renderCalendar(); }
-function toggleAtt(ds) {
-    if(!currentCalendarStudent) return; if(!attendance[currentCalendarStudent]) attendance[currentCalendarStudent]={};
-    let cur = attendance[currentCalendarStudent][ds]; attendance[currentCalendarStudent][ds] = !cur ? 'present' : cur==='present' ? 'absent' : null;
-    if(!attendance[currentCalendarStudent][ds]) delete attendance[currentCalendarStudent][ds];
-    syncToCloud();
-}
+function toggleAtt(ds) { if(!currentCalendarStudent) return; if(!attendance[currentCalendarStudent]) attendance[currentCalendarStudent]={}; let cur = attendance[currentCalendarStudent][ds]; attendance[currentCalendarStudent][ds] = !cur ? 'present' : cur==='present' ? 'absent' : null; if(!attendance[currentCalendarStudent][ds]) delete attendance[currentCalendarStudent][ds]; syncToCloud(); }
 
-// --- FEES ---
-function loadFeesDetails() {
-    const id = document.getElementById('feesStudentSelect').value; document.getElementById('feesDetails').style.display = id ? 'block' : 'none';
-    if(!id) return; const s = students.find(x=>x.id===id); const pd = (payments[id]||[]).reduce((x,y)=>x+y.amount,0);
-    document.getElementById('totalFees').textContent = s.fee||0; document.getElementById('paidFees').textContent = pd; document.getElementById('dueFees').textContent = Math.max(0,(s.fee||0)-pd);
-    document.getElementById('paymentHistory').innerHTML = (payments[id]||[]).slice().reverse().map((p,i) => `<div style="display:flex;justify-content:space-between;padding:12px;background:var(--app-bg);border-radius:12px;margin-bottom:8px;border:1px solid var(--border)"><div style="color:var(--text-main);font-weight:bold">+ ₹${p.amount} <br><span style="color:var(--gray);font-size:0.75rem">${p.date}</span></div><button class="btn-small btn-danger" onclick="delPay('${id}',${(payments[id].length-1)-i})">Revert</button></div>`).join('') || '<p style="color:var(--gray)">No transactions</p>';
-}
-function addPayment() {
-    const id = document.getElementById('feesStudentSelect').value; const amt = parseInt(document.getElementById('paymentAmount').value);
-    if(!id || !amt) return showToast('Invalid amount','error');
-    if(!payments[id]) payments[id]=[]; payments[id].push({amount:amt, date:document.getElementById('paymentDate').value});
-    logAct(`Funds processed: ₹${amt}`); syncToCloud(); document.getElementById('paymentAmount').value=''; showToast('Transaction Confirmed');
-}
+function loadFeesDetails() { const id = document.getElementById('feesStudentSelect').value; document.getElementById('feesDetails').style.display = id ? 'block' : 'none'; if(!id) return; const s = students.find(x=>x.id===id); const pd = (payments[id]||[]).reduce((x,y)=>x+y.amount,0); document.getElementById('totalFees').textContent = s.fee||0; document.getElementById('paidFees').textContent = pd; document.getElementById('dueFees').textContent = Math.max(0,(s.fee||0)-pd); document.getElementById('paymentHistory').innerHTML = (payments[id]||[]).slice().reverse().map((p,i) => `<div style="display:flex;justify-content:space-between;padding:12px;background:var(--app-bg);border-radius:12px;margin-bottom:8px;border:1px solid var(--border)"><div style="color:var(--text-main);font-weight:bold">+ ₹${p.amount} <br><span style="color:var(--gray);font-size:0.75rem">${p.date}</span></div><button class="btn-small btn-danger" onclick="delPay('${id}',${(payments[id].length-1)-i})">Revert</button></div>`).join('') || '<p style="color:var(--gray)">No transactions</p>'; }
+function addPayment() { const id = document.getElementById('feesStudentSelect').value; const amt = parseInt(document.getElementById('paymentAmount').value); if(!id || !amt) return showToast('Invalid amount','error'); if(!payments[id]) payments[id]=[]; payments[id].push({amount:amt, date:document.getElementById('paymentDate').value}); logAct(`Funds processed: ₹${amt}`); syncToCloud(); document.getElementById('paymentAmount').value=''; showToast('Transaction Confirmed'); }
 function delPay(id, i) { if(!confirm('Void transaction?')) return; payments[id].splice(i,1); syncToCloud(); }
 
-// --- REPORTS ---
 function updateReportOptions() { const t = document.getElementById('reportType').value; document.getElementById('reportStudentGroup').style.display = t==='student'?'block':'none'; document.getElementById('reportMonthGroup').style.display = t==='monthly'?'block':'none'; }
-function generateReport() {
-    const t = document.getElementById('reportType').value; const sid = document.getElementById('reportStudentSelect').value; const mo = document.getElementById('reportMonth').value;
-    if(!t) return showToast('Define Vector','error');
-    let txt = `=== CHANDAN SIR PRO DATA ===\nTIME: ${new Date().toLocaleString()}\n\n`;
-    if(t==='student') {
-        if(!sid) return showToast('Target missing','error');
-        const s = students.find(x=>x.id===sid); const pd = (payments[sid]||[]).reduce((x,y)=>x+y.amount,0);
-        const at = attendance[sid] || {}; let p=0, a=0;
-        Object.values(at).forEach(val => { if(val==='present') p++; else if(val==='absent') a++; });
-        const perc = (p+a)>0 ? Math.round((p/(p+a))*100)+'%' : '0%';
-        txt+=`SUBJECT: ${s.name}\nGRADE: ${s.class||'N/A'}\nCOMMS: ${s.phone||'N/A'}\n\nATTENDANCE LOG:\nPresent: ${p} Days\nAbsent: ${a} Days\nPercentage: ${perc}\n\nFINANCE DATA:\nExpected: ₹${s.fee||0}\nRecovered: ₹${pd}\nDeficit: ₹${Math.max(0,(s.fee||0)-pd)}`;
-    } else if(t==='monthly') {
-        if(!mo) return showToast('Define timeline','error');
-        txt+=`TIMELINE REVENUE [${mo}]\n\n`; students.forEach(s => { const pd = (payments[s.id]||[]).filter(p=>p.date.startsWith(mo)).reduce((x,y)=>x+y.amount,0); txt+=`>> ${s.name}: ₹${pd} recovered\n`; });
-    }
-    currentReport = txt; document.getElementById('reportPreview').value = txt; document.getElementById('reportResult').style.display = 'block';
-}
+function generateReport() { const t = document.getElementById('reportType').value; const sid = document.getElementById('reportStudentSelect').value; const mo = document.getElementById('reportMonth').value; if(!t) return showToast('Define Vector','error'); let txt = `=== CHANDAN SIR PRO DATA ===\nTIME: ${new Date().toLocaleString()}\n\n`; if(t==='student') { if(!sid) return showToast('Target missing','error'); const s = students.find(x=>x.id===sid); const pd = (payments[sid]||[]).reduce((x,y)=>x+y.amount,0); const at = attendance[sid] || {}; let p=0, a=0; Object.values(at).forEach(val => { if(val==='present') p++; else if(val==='absent') a++; }); const perc = (p+a)>0 ? Math.round((p/(p+a))*100)+'%' : '0%'; txt+=`SUBJECT: ${s.name}\nGRADE: ${s.class||'N/A'}\nCOMMS: ${s.phone||'N/A'}\n\nATTENDANCE LOG:\nPresent: ${p} Days\nAbsent: ${a} Days\nPercentage: ${perc}\n\nFINANCE DATA:\nExpected: ₹${s.fee||0}\nRecovered: ₹${pd}\nDeficit: ₹${Math.max(0,(s.fee||0)-pd)}`; } else if(t==='monthly') { if(!mo) return showToast('Define timeline','error'); txt+=`TIMELINE REVENUE [${mo}]\n\n`; students.forEach(s => { const pd = (payments[s.id]||[]).filter(p=>p.date.startsWith(mo)).reduce((x,y)=>x+y.amount,0); txt+=`>> ${s.name}: ₹${pd} recovered\n`; }); } currentReport = txt; document.getElementById('reportPreview').value = txt; document.getElementById('reportResult').style.display = 'block'; }
 function shareReport(m) { window.open(`https://wa.me/?text=${encodeURIComponent(currentReport)}`); }
 
-function exportToCSV() {
-    if(students.length === 0) { showToast("No data to export", "error"); return; }
-    let csvContent = "Name,Class,Phone,Expected Fee,Total Paid,Due Amount,Present Days,Absent Days,Attendance %\n";
-    students.forEach(s => {
-        const pd = (payments[s.id]||[]).reduce((x,y)=>x+y.amount,0); const due = Math.max(0, (s.fee||0)-pd);
-        const at = attendance[s.id] || {}; let p=0, a=0;
-        Object.values(at).forEach(val => { if(val==='present') p++; else if(val==='absent') a++; });
-        const perc = (p+a)>0 ? Math.round((p/(p+a))*100)+'%' : '0%';
-        csvContent += `"${s.name}","${s.class||''}","${s.phone||''}","${s.fee||0}","${pd}","${due}","${p}","${a}","${perc}"\n`;
-    });
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a"); link.setAttribute("href", url); link.setAttribute("download", "Tuition_Data.csv");
-    document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url);
-    showToast("Excel Downloaded!");
-}
-
-// --- SECRETS, SETTINGS & LOGO SYNC ---
-let secretClicks = 0; let secretTimer;
-
-// FIX: Secret Panel ab Password mangega
-function secretTrigger() {
-    secretClicks++; clearTimeout(secretTimer); secretTimer = setTimeout(() => secretClicks = 0, 800);
-    if(secretClicks >= 5) {
-        secretClicks = 0; 
-        let code = prompt("Enter Admin Secret Code:");
-        if (code === "raunak007") {
-            document.getElementById('secretPanelModal').classList.add('active'); 
-            showToast("Admin Mode Unlocked", "success");
-        } else {
-            showToast("Access Denied", "error");
-        }
-    }
-}
-
-// FIX: Logo Upload with Loader
-function handleLogoUpload(e) {
-    const file = e.target.files[0]; if(!file) return;
-    showToast("Uploading Logo... Please wait", "warning"); // Visual cue
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        try { 
-            localStorage.setItem('tc_logo', event.target.result); 
-            document.querySelectorAll('.app-logo-img').forEach(img => { img.src = event.target.result; img.style.display='block'; }); 
-            syncToCloud(); 
-            setTimeout(() => { showToast("Logo Synced Globaly!", "success"); }, 1500); 
-        } catch(err) { showToast("File too large. Try smaller image.", "error"); }
-    }; reader.readAsDataURL(file);
-}
-
-function changeAppPassword() {
-    let oldP = document.getElementById('oldPass').value; let newP = document.getElementById('newPass').value;
-    if(oldP !== appPassword) { showToast("Current password incorrect!", "error"); return; }
-    if(newP.length < 4) { showToast("New password too short!", "error"); return; }
-    appPassword = newP; syncToCloud(); document.getElementById('oldPass').value = ''; document.getElementById('newPass').value = ''; showToast("Password updated!");
-}
-
+function exportToCSV() { if(students.length === 0) { showToast("No data to export", "error"); return; } let csvContent = "Name,Class,Phone,Expected Fee,Total Paid,Due Amount,Present Days,Absent Days,Attendance %\n"; students.forEach(s => { const pd = (payments[s.id]||[]).reduce((x,y)=>x+y.amount,0); const due = Math.max(0, (s.fee||0)-pd); const at = attendance[s.id] || {}; let p=0, a=0; Object.values(at).forEach(val => { if(val==='present') p++; else if(val==='absent') a++; }); const perc = (p+a)>0 ? Math.round((p/(p+a))*100)+'%' : '0%'; csvContent += `"${s.name}","${s.class||''}","${s.phone||''}","${s.fee||0}","${pd}","${due}","${p}","${a}","${perc}"\n`; }); const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.setAttribute("href", url); link.setAttribute("download", "Tuition_Data.csv"); document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url); showToast("Excel Downloaded!"); }
+function handleLogoUpload(e) { const file = e.target.files[0]; if(!file) return; showToast("Uploading Logo...", "warning"); const reader = new FileReader(); reader.onload = function(event) { try { localStorage.setItem('tc_logo', event.target.result); document.querySelectorAll('.app-logo-img').forEach(img => { img.src = event.target.result; img.style.display='block'; }); syncToCloud(); setTimeout(() => { showToast("Logo Synced Globaly!", "success"); }, 1500); } catch(err) { showToast("File too large. Try smaller image.", "error"); } }; reader.readAsDataURL(file); }
+function changeAppPassword() { let oldP = document.getElementById('oldPass').value; let newP = document.getElementById('newPass').value; if(oldP !== appPassword) { showToast("Current password incorrect!", "error"); return; } if(newP.length < 4) { showToast("New password too short!", "error"); return; } appPassword = newP; syncToCloud(); document.getElementById('oldPass').value = ''; document.getElementById('newPass').value = ''; showToast("Password updated!"); }
 function backupData() { const d = JSON.stringify({students, attendance, payments, activityLog, appPassword, testRecords}); navigator.clipboard.writeText(d).then(() => showToast('JSON Backup Copied!')); }
-function showRestoreModal() { document.getElementById('restoreData').value=''; document.getElementById('restoreModal').classList.add('active'); }
-function restoreDataNow() {
-    try {
-        const d = JSON.parse(document.getElementById('restoreData').value);
-        if(d.students) students=d.students; if(d.attendance) attendance=d.attendance;
-        if(d.payments) payments=d.payments; if(d.activityLog) activityLog=d.activityLog;
-        if(d.appPassword) appPassword=d.appPassword; if(d.testRecords) testRecords=d.testRecords;
-        syncToCloud(); showToast('Overwrite Complete. Rebooting...'); setTimeout(() => location.reload(), 1500);
-    } catch(e) { showToast('Payload Corrupted','error'); }
-}
 function resetApp() { if(confirm('INITIATE NUKE PROTOCOL? ALL DATA WILL BURN.')) { db.ref('ChandanSirProData').remove(); sessionStorage.clear(); location.reload(); } }
 </script>
 </body>
-</html>
-
-
-  
+</html> 
+                
